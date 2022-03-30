@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Aplicativo mobile de reservas de locais de trabalho para programadores",
+    "githubUrl": "https://github.com/lucassilva1998/AirCnC"
   }
 }

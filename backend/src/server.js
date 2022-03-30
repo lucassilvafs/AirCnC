@@ -3,13 +3,37 @@ const mongoose = require('mongoose')
 const cors = require('cors');
 const path = require('path');
 
+const socketio = require('socket.io');
+const http = require('http');
+
 const routes = require('./routes');
 
 const app = express();
+const server = http.Server(app);
+const io = socketio(server);
 
 mongoose.connect('mongodb+srv://lucassilva:prototipo98@cluster0.ohqsm.mongodb.net/meuBanco?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+})
+
+const connectedUsers = {};
+
+io.on('connection', socket => {
+    const { user_id } = socket.handshake.query;
+
+    connectedUsers[user_id] = socket.id;
+
+    console.log('Usuario conectado', socket.id);
+    console.log(socket.handshake.query);
+    socket.emit('hello', 'hellou');
+});
+
+app.use((req, res, next) => {
+    req.io = io;
+    req.connectedUsers = connectedUsers; 
+
+    return next();
 })
 
 // GET, POST, PUT, DELETE
@@ -33,4 +57,4 @@ app.use(routes);
     //return res.json({ message: "ouvindo" });
 //});
 
-app.listen(3333);
+server.listen(3333);
