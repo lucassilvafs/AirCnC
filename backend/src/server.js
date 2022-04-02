@@ -24,9 +24,9 @@ io.on('connection', socket => {
 
     connectedUsers[user_id] = socket.id;
 
-    console.log('Usuario conectado', socket.id);
-    console.log(socket.handshake.query);
-    socket.emit('hello', 'hellou');
+    //console.log('Usuario conectado', socket.id);
+    //console.log(socket.handshake.query);
+    //socket.emit('hello', 'hellou');
 });
 
 app.use((req, res, next) => {
