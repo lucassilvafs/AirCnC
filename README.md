@@ -1,5 +1,5 @@
 # AirCnC
-Projeto feito na semana Omnistack  utilizando ReactJS, React Native e Node.js
+Projeto feito utilizando ReactJS, React Native e Node.js
 
 O projeto consiste em um aplicativo web e mobile que gerencia reservas de locais de trabalho para programadores.
 
